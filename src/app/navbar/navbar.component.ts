@@ -12,7 +12,4 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  search(searchTerm: string) {
-
-  }
 }
