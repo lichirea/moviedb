@@ -1,5 +1,6 @@
 export interface Movie {
   original_title: string,
+  title: string,
   release_date: string,
   adult: boolean,
   overview: string,
