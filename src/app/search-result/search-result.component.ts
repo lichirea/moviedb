@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Movie} from "../entities/movie";
 import {MovieService} from "../services/movie.service";
 import {ActivatedRoute} from "@angular/router";
+import {Result} from "../entities/result";
 
 @Component({
   selector: 'app-search-result',
@@ -9,23 +10,29 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
-  movies: Movie[] = [];
+  results!: Result;
+  movies?: Movie[];
 
   constructor(
     private movieService: MovieService,
     private route: ActivatedRoute,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    const term = this.route.snapshot.paramMap.get('search');
-    if (term !== null){
+    const term = this.route.snapshot.paramMap.get('term');
+    if (term !== null) {
       this.searchMovies(term);
     }
   }
 
-  searchMovies(term: string): void{
+  searchMovies(term: string): void {
     this.movieService.search(term.trim())
-      .subscribe(movies => this.movies = movies);
+      .subscribe(results => this.processResponse(results));
   }
 
+  private processResponse(results: Result) {
+    this.results = results;
+    this.movies = results.results;
+  }
 }

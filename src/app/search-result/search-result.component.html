@@ -1,3 +1,13 @@
-<div class="alert alert-danger" *ngIf="this.movies.length === 0">
+<div class="alert alert-danger" *ngIf="this.results.results.length === 0">
   Couldn't find anything with that term. Try another search!
+</div>
+
+<div class="container">
+  <div *ngFor="let movie of movies" class="card" style="width: 18rem">
+    <img class="card-img-top" src="{{movie.poster_path}}" alt="Movie Poster">
+    <div class="card-body">
+      <h5 class="card-title">{{movie.original_title}}</h5>
+    </div>
+
+  </div>
 </div>
