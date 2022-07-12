@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">MovieDB</a>
+
+    <form class="d-flex">
+      <input class="form-control me-2 bg-danger" type="search" id="search-term"
+             [(ngModel)]="searchTerm" name="searchTerm" placeholder="Search" aria-label="Search">
+      <a (click)="search()">
+        <button class="btn btn-danger" type="submit">Search</button>
+      </a>
+    </form>
+  </div>
+</nav>
