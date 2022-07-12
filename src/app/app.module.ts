@@ -25,9 +25,9 @@ import { WatchlistComponent } from './watchlist/watchlist.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false}
-    )
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, {dataEncapsulation: false}
+    // )
   ],
   providers: [],
   bootstrap: [AppComponent]

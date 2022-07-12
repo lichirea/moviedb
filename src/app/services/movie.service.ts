@@ -49,7 +49,8 @@ export class MovieService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.log(operation);
+      console.log('Error: '+ operation);
+      console.log(error);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
