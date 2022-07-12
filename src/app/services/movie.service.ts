@@ -16,12 +16,12 @@ export class MovieService {
     private http: HttpClient
   ) { }
 
-  search(term: string): Observable<Result> {
+  search(term: string, page: number): Observable<Result> {
     let searchUrl = 'https://api.themoviedb.org/3/search/movie?' +
       'api_key=0c3e7beaa53d68a61d142e6fcb7618bb' +
       '&query=' + term +
       '&language=en-US' +
-      '&page=1' +
+      '&page=' + page +
       '&include_adult=false';
     return this.http.get<any>(searchUrl)
       .pipe(
