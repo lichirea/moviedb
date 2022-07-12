@@ -7,12 +7,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import {HttpClientModule, HttpClient, HttpHeaders} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import { MovieComponent } from './movie/movie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    MovieComponent
   ],
     imports: [
         BrowserModule,

@@ -3,19 +3,9 @@
 </div>
 
 <div class="container">
-  <div *ngFor="let movie of movies" class="card" style="width: 18rem">
-    <img class="card-img-top" src="{{movie.poster_path}}" alt="Movie Poster">
-    <div class="card-body">
-      <h5 class="card-title text-center">{{movie.original_title}}</h5>
-      <h6 class="text-center" *ngIf="movie.title !== movie.original_title">{{movie.title}}</h6>
-      <span>{{movie.release_date}}</span>
-      <span>{{movie.vote_average}}&star; {{movie.vote_count}}&#9878;</span>
-      <span class="card-text">{{movie.overview}}</span>
-
-    </div>
-
+  <div *ngFor="let movie of movies">
+    <app-movie [movie]="movie"></app-movie>
   </div>
-
   <div class="result-actions">
     <button class="btn btn-info" (click)="previousPage()" [attr.disabled]="page === 1? true : null"> << </button>
     <div class="result-info">
