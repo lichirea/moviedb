@@ -1,8 +1,8 @@
-<div class="alert alert-danger" *ngIf="this.results.results.length === 0">
+<div class="alert alert-danger" *ngIf="this.results === undefined">
   Couldn't find anything with that term. Try another search!
 </div>
 
-<div class="container">
+<div *ngIf="this.results !== undefined" class="container">
   <div *ngFor="let movie of movies">
     <app-movie [movie]="movie"></app-movie>
   </div>

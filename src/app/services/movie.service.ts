@@ -30,6 +30,14 @@ export class MovieService {
       );
   }
 
+  getWatchlist() {
+    return this.http.get<Movie[]>('api/watchlist')
+      .pipe(
+        tap(result => console.log(result)),
+        catchError(this.handleError<any>('getWatchlist', []))
+      )
+  }
+
   getPoster(poster_path: string | null) {
     let imageUrl = 'https://image.tmdb.org/t/p/w500' + poster_path;
     return this.http.get<any>(imageUrl)
@@ -47,5 +55,6 @@ export class MovieService {
       return of(result as T);
     };
   }
+
 
 }

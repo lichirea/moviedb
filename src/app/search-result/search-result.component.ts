@@ -25,7 +25,6 @@ export class SearchResultComponent implements OnInit {
   ngOnInit(): void {
     this.term = this.route.snapshot.paramMap.get('term');
     if (this.term !== null) {
-      this.term = this.term.replace(/\s/g, '-');
       this.searchMovies(this.term, 1);
     }
   }
