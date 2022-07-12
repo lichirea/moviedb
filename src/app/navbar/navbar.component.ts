@@ -21,6 +21,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  watchlist() {
+    this.router.navigate(['watchlist']);
+  }
 
   search() {
     this.searchTerm = this.searchTerm.trim().replace(/\s/g, '+');
