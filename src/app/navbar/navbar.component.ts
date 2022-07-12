@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
 
 
   search() {
-    this.searchTerm = this.searchTerm.trim().replace(/\s/g, '-');
+    this.searchTerm = this.searchTerm.trim().replace(/\s/g, '+');
     console.log(this.searchTerm);
     this.router.navigate([`search/${this.searchTerm}`]);
   }

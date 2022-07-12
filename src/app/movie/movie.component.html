@@ -1,5 +1,5 @@
 <div class="card" style="width: 18rem">
-  <img class="card-img-top" src="{{movie.poster_path}}" alt="Movie Poster">
+  <img class="card-img-top" [src]="poster" alt="Movie Poster">
   <div class="card-body">
     <h5 class="card-title text-center">{{movie.original_title}}</h5>
     <h6 class="text-center" *ngIf="movie.title !== movie.original_title">{{movie.title}}</h6>

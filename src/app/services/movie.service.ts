@@ -9,7 +9,7 @@ import {Result} from "../entities/result";
 })
 export class MovieService {
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json', })
+    headers: new HttpHeaders({'Content-Type': 'application/json', 'Allow': ''})
   };
 
   constructor(
@@ -30,6 +30,15 @@ export class MovieService {
       );
   }
 
+  getPoster(poster_path: string | null) {
+    let imageUrl = 'https://image.tmdb.org/t/p/w500' + poster_path;
+    return this.http.get<any>(imageUrl)
+      .pipe(
+        tap(result => console.log(result)),
+        catchError(this.handleError<any>('getPoster', []))
+      )
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log(operation);
@@ -38,4 +47,5 @@ export class MovieService {
       return of(result as T);
     };
   }
+
 }
