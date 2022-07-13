@@ -21,7 +21,6 @@ export class UserService {
     return this.http.get<any>(requestTokenUrl)
       .pipe(
         tap(tokenResponse => {
-          this.tokenResponse = tokenResponse;
           console.log(this.tokenResponse);
         })
       )
@@ -29,17 +28,19 @@ export class UserService {
   }
 
   getSession() {
-    let sessionIdUrl = 'https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=0c3e7beaa53d68a61d142e6fcb7618bb'
-    return this.http.post<any>(sessionIdUrl, {username: 'lichirea', password:'coolmoviedbpassword', request_token: this.tokenResponse.request_token})
+    let sessionIdUrl = 'https://api.themoviedb.org/3/authentication/session/new?api_key=0c3e7beaa53d68a61d142e6fcb7618bb'
+    return this.http.post<any>(sessionIdUrl, {request_token: sessionStorage.getItem('requestToken')})
       .pipe(
         tap(sessionIdResponse => {
-          console.log(sessionIdResponse);
+          console.log('SessionId response: ' + sessionIdResponse);
         })
       )
   }
 
   getAccountId() {
-    let accountIdUrl = 'https://api.themoviedb.org/3/account?api_key=0c3e7beaa53d68a61d142e6fcb7618bb'
+    let accountIdUrl = 'https://api.themoviedb.org/3/account?api_key=0c3e7beaa53d68a61d142e6fcb7618bb' +
+      '&session_id=' + sessionStorage.getItem('sessionId');
+    console.log(sessionStorage.getItem('sessionId'));
     return this.http.get<any>(accountIdUrl)
       .pipe(
         tap(accountIdResponse =>

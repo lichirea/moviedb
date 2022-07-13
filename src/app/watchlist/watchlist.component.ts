@@ -36,15 +36,15 @@ export class WatchlistComponent implements OnInit {
   private getWatchlist() {
     this.movieService.getWatchlist()
       .subscribe(
-        watchlist => this.watchlist = watchlist
+        watchlist => this.watchlist = watchlist.results
       );
   }
 
   private async getSession() {
     this.userService.getSession()
       .subscribe(
-        sessionId => {
-          sessionStorage.setItem('sessionId', sessionId);
+        session => {
+          sessionStorage.setItem('sessionId', session.session_id);
           this.getAccountId();
         }
 
@@ -55,7 +55,7 @@ export class WatchlistComponent implements OnInit {
     this.userService.getAccountId()
       .subscribe(
         accountId => {
-          sessionStorage.setItem('accountId', accountId);
+          sessionStorage.setItem('accountId', String(accountId.id));
           this.getWatchlist();
         }
       )
@@ -66,6 +66,7 @@ export class WatchlistComponent implements OnInit {
       .subscribe(
         (response: { request_token: string, success: boolean }) => {
           sessionStorage.setItem('loggedIn', String(response.success))
+          sessionStorage.setItem('requestToken', response.request_token)
           window.location.assign('https://www.themoviedb.org/authenticate/' +
             response.request_token +
             '?redirect_to=http://localhost:4200/watchlist');

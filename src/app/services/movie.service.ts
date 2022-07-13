@@ -38,7 +38,7 @@ export class MovieService {
       '&language=en-US&' +
       'session_id=' + sessionStorage.getItem('sessionId') +
       '&sort_by=created_at.asc&page=1'
-    return this.http.get<Movie[]>(watchlistUrl)
+    return this.http.get<{result: Movie[]}>(watchlistUrl)
       .pipe(
         tap(result => console.log(result)),
         catchError(this.handleError<any>('getWatchlist', []))
