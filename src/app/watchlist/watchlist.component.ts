@@ -33,6 +33,19 @@ export class WatchlistComponent implements OnInit {
       this.getWatchlist();
   }
 
+  private login() {
+    this.userService.login()
+      .subscribe(
+        (response: { request_token: string, success: boolean }) => {
+          sessionStorage.setItem('loggedIn', String(response.success))
+          sessionStorage.setItem('requestToken', response.request_token)
+          window.location.assign('https://www.themoviedb.org/authenticate/' +
+            response.request_token +
+            '?redirect_to=http://localhost:4200/watchlist');
+        }
+      )
+  }
+
   private getWatchlist() {
     this.movieService.getWatchlist()
       .subscribe(
@@ -57,19 +70,6 @@ export class WatchlistComponent implements OnInit {
         accountId => {
           sessionStorage.setItem('accountId', String(accountId.id));
           this.getWatchlist();
-        }
-      )
-  }
-
-  private async login() {
-    this.userService.login()
-      .subscribe(
-        (response: { request_token: string, success: boolean }) => {
-          sessionStorage.setItem('loggedIn', String(response.success))
-          sessionStorage.setItem('requestToken', response.request_token)
-          window.location.assign('https://www.themoviedb.org/authenticate/' +
-            response.request_token +
-            '?redirect_to=http://localhost:4200/watchlist');
         }
       )
   }

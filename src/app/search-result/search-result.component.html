@@ -7,11 +7,11 @@
     <app-movie [movie]="movie"></app-movie>
   </div>
   <div class="result-actions">
-    <button class="btn btn-info" (click)="previousPage()" [attr.disabled]="page === 1? true : null"> << </button>
+    <button class="btn btn-dark" (click)="previousPage()" [attr.disabled]="page === 1? true : null"> << </button>
     <div class="result-info">
       <span>Page: {{results.page}}/{{results.total_pages}} </span>
       <span>Total number of results: {{results.total_results}}</span>
     </div>
-    <button class="btn btn-info" (click)="nextPage()" [attr.disabled]="page === results.total_pages? true : null"> >> </button>
+    <button class="btn btn-dark" (click)="nextPage()" [attr.disabled]="page === results.total_pages? true : null"> >> </button>
   </div>
 </div>

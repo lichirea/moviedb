@@ -2,7 +2,10 @@
   No movies in WATCHLIST. Search for some in the top right!
 </div>
 
-<div *ngFor="let movie of watchlist">
-  <app-movie [movie]="movie"></app-movie>
+<div class="container">
+  <div *ngFor="let movie of watchlist" >
+    <app-movie [movie]="movie"></app-movie>
+  </div>
 </div>
+
 

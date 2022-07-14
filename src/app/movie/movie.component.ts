@@ -3,6 +3,7 @@ import {Movie} from "../entities/movie";
 import {MovieService} from "../services/movie.service";
 import {DomSanitizer} from "@angular/platform-browser";
 
+
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
@@ -11,24 +12,49 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class MovieComponent implements OnInit {
   @Input() movie!: Movie;
   poster: any;
+  onWatchlist: boolean = false;
+  rated: boolean = false;
 
   constructor(
     private movieService: MovieService,
     private sanitizer: DomSanitizer,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
+    this.isOnWatchlist();
     //this.getPoster();
   }
 
   getPoster(): void {
     this.movieService.getPoster(this.movie.poster_path)
       .subscribe(
-        (baseImage: any) =>
-        {
+        (baseImage: any) => {
           let objectUrl = 'data:image/png;base64,' + baseImage.image;
           this.poster = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
         }
       )
+  }
+
+
+  isOnWatchlist(): void {
+    this.movieService.isOnWatchlist(this.movie.id)
+      .subscribe(
+        result => this.onWatchlist = result.watchlist
+      )
+  }
+
+  changeWatchList() {
+    this.movieService.changeWatchList(this.movie.id, !this.onWatchlist)
+      .subscribe(
+        response => {
+          response.status_code === 201? this.onWatchlist = !this.onWatchlist : 0;
+          this.ngOnInit();
+        }
+      )
+  }
+
+  rate() {
+
   }
 }

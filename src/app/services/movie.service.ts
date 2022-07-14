@@ -45,6 +45,31 @@ export class MovieService {
       )
   }
 
+  isOnWatchlist(id: number) {
+    let onWatchListUrl = 'https://api.themoviedb.org/3/movie/' +
+      id + '/account_states?api_key=0c3e7beaa53d68a61d142e6fcb7618bb' +
+      '&session_id=' + sessionStorage.getItem('sessionId');
+    return this.http.get<any>(onWatchListUrl)
+      .pipe(
+        tap(result => console.log(`Movie with id=${id} is on watchlist=${result}`)),
+        catchError(this.handleError<any>('isOnWatchlist', []))
+      )
+
+  }
+
+  changeWatchList(id: number, b: boolean) {
+    let changeWatchlistUrl = 'https://api.themoviedb.org/3/account/' +
+      sessionStorage.getItem('accountId') + '/watchlist?api_key=0c3e7beaa53d68a61d142e6fcb7618bb' +
+      '&session_id=' + sessionStorage.getItem('sessionId');
+    return this.http.post(changeWatchlistUrl, {'media_type': 'movie', 'media_id': id, 'watchlist': b})
+      .pipe(
+        tap(result => console.log(`Movie with id=${id} is changed to be on watchlist=${result}`)),
+        catchError(this.handleError<any>('changeWatchList', []))
+      )
+
+  }
+
+
   getPoster(poster_path: string | null) {
     let imageUrl = 'https://image.tmdb.org/t/p/w500' + poster_path;
     return this.http.get<any>(imageUrl)
@@ -63,6 +88,4 @@ export class MovieService {
       return of(result as T);
     };
   }
-
-
 }
