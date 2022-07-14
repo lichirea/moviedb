@@ -70,6 +70,17 @@ export class MovieService {
   }
 
 
+  rate(id: number, rating: number) {
+    let rateUrl = 'https://api.themoviedb.org/3/movie/' +
+      id + '/rating?api_key=0c3e7beaa53d68a61d142e6fcb7618bb' +
+      '&session_id=' + sessionStorage.getItem('sessionId');
+    return this.http.post(rateUrl, {'value': rating})
+      .pipe(
+        tap(result => console.log(result)),
+        catchError(this.handleError<any>('rate', []))
+      )
+  }
+
   getPoster(poster_path: string | null) {
     let imageUrl = 'https://image.tmdb.org/t/p/w500' + poster_path;
     return this.http.get<any>(imageUrl)

@@ -54,7 +54,4 @@ export class MovieComponent implements OnInit {
       )
   }
 
-  rate() {
-
-  }
 }

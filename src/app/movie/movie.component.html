@@ -1,5 +1,5 @@
 <div class="card shadow-lg rounded border-3 bg-danger" style="width: 18rem">
-  <img class="card-img-top" [src]="poster" alt="Movie Poster">
+  <img class="card-img-top" src="/assets/popcorn.jpg" alt="Movie Poster">
   <div class="card-body">
     <h5 class="card-title text-center">{{movie.original_title}}</h5>
     <h6 class="text-center" *ngIf="movie.title !== movie.original_title">{{movie.title}}</h6>
@@ -14,8 +14,13 @@
           <button class="btn btn-danger" (click)="changeWatchList()">Remove</button>
         </ng-template>
       </div>
-      <button class="btn btn-dark" (click)="rate()">{{rated ? 'Change Rating' : 'Rate'}}</button>
+      <button type="button" class="btn btn-dark" routerLink="/rate/{{movie.id}}">
+        {{rated ? 'Change Rating' : 'Rate'}}
+      </button>
     </div>
     <span class="card-text">{{movie.overview}}</span>
   </div>
 </div>
+
+
+

@@ -11,6 +11,7 @@ import {MovieComponent} from './movie/movie.component';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from "./services/in-memory-data.service";
 import { WatchlistComponent } from './watchlist/watchlist.component';
+import { RateComponent } from './rate/rate.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { WatchlistComponent } from './watchlist/watchlist.component';
     NavbarComponent,
     SearchResultComponent,
     MovieComponent,
-    WatchlistComponent
+    WatchlistComponent,
+    RateComponent
   ],
   imports: [
     BrowserModule,
