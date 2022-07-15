@@ -6,6 +6,7 @@ import {tap} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
   private _tokenResponse: { success: boolean, request_token: string } =
     {success: false, request_token: ''};

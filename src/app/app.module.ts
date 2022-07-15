@@ -13,6 +13,7 @@ import {InMemoryDataService} from "./services/in-memory-data.service";
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { RateComponent } from './rate/rate.component';
 import { HighlightWhiteDirective } from './highlight-white.directive';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HighlightWhiteDirective } from './highlight-white.directive';
     MovieComponent,
     WatchlistComponent,
     RateComponent,
-    HighlightWhiteDirective
+    HighlightWhiteDirective,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,

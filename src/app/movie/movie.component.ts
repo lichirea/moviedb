@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Movie} from "../entities/movie";
 import {MovieService} from "../services/movie.service";
 import {DomSanitizer} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -18,6 +19,7 @@ export class MovieComponent implements OnInit {
   constructor(
     private movieService: MovieService,
     private sanitizer: DomSanitizer,
+    private router: Router,
   ) {
   }
 
@@ -54,4 +56,7 @@ export class MovieComponent implements OnInit {
       )
   }
 
+  getReviews() {
+    this.router.navigate([{outlets: {side: ['reviews', this.movie.id]}}]);
+  }
 }
