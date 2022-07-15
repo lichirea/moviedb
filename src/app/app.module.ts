@@ -12,6 +12,7 @@ import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from "./services/in-memory-data.service";
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { RateComponent } from './rate/rate.component';
+import { HighlightWhiteDirective } from './highlight-white.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RateComponent } from './rate/rate.component';
     SearchResultComponent,
     MovieComponent,
     WatchlistComponent,
-    RateComponent
+    RateComponent,
+    HighlightWhiteDirective
   ],
   imports: [
     BrowserModule,
