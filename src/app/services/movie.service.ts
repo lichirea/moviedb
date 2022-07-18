@@ -11,6 +11,7 @@ export class MovieService {
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json', 'Allow': ''})
   };
+  private _currentMovieId: number = 0;
 
   constructor(
     private http: HttpClient
@@ -66,7 +67,6 @@ export class MovieService {
         tap(result => console.log(`Movie with id=${id} is changed to be on watchlist=${result}`)),
         catchError(this.handleError<any>('changeWatchList', []))
       )
-
   }
 
   rate(id: number, rating: number) {
@@ -81,8 +81,7 @@ export class MovieService {
   }
 
   getReviews(movieId: number, page: number) {
-    let reviewsUrl = `https://api.themoviedb.org/3/movie
-    /${movieId}/reviews?api_key=0c3e7beaa53d68a61d142e6fcb7618bb&language=en-US&page=${page}`
+    let reviewsUrl = `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=0c3e7beaa53d68a61d142e6fcb7618bb&language=en-US&page=${page}`
     return this.http.get<any>(reviewsUrl)
       .pipe(
         tap(result => console.log(result)),
@@ -99,6 +98,7 @@ export class MovieService {
       )
   }
 
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log('Error: ' + operation);
@@ -107,4 +107,14 @@ export class MovieService {
       return of(result as T);
     };
   }
+
+
+  get currentMovieId(): number {
+    return this._currentMovieId;
+  }
+
+  set currentMovieId(value: number) {
+    this._currentMovieId = value;
+  }
+
 }

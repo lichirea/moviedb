@@ -58,6 +58,7 @@ export class MovieComponent implements OnInit {
   }
 
   getReviews() {
+    this.movieService.currentMovieId = this.movie.id;
     this.router.navigate([{outlets: {side: ['reviews', this.movie.id]}}]);
   }
 }

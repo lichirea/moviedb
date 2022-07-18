@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Review} from "../entities/review";
 import {MovieService} from "../services/movie.service";
 
@@ -8,21 +8,23 @@ import {MovieService} from "../services/movie.service";
   styleUrls: ['./reviews.component.css']
 })
 export class ReviewsComponent implements OnInit {
-  movieId: number = 0;
-  results!: {results: Review[], page: number, total_pages: number, total_results: number};
+  @Input() movieId: number = 0;
+  results!: { results: Review[], page: number, total_pages: number, total_results: number };
   reviews?: Review[] = [];
   page: number = 1;
 
   constructor(
     private movieService: MovieService,
-  ) { }
-
-  ngOnInit(): void {
-    this.getReviews();
+  ) {
   }
 
-  private getReviews() {
-    this.movieService.getReviews(this.movieId, 1)
+  ngOnInit(): void {
+    this.movieId = this.movieService.currentMovieId;
+    this.getReviews(1);
+  }
+
+  private getReviews(page: number) {
+    this.movieService.getReviews(this.movieId, page)
       .subscribe(
         response => {
           this.results = response;
@@ -31,5 +33,13 @@ export class ReviewsComponent implements OnInit {
       )
   }
 
+  nextPage() {
+    this.page++;
+    this.getReviews(this.page);
+  }
 
+  previousPage() {
+    this.page--;
+    this.getReviews(this.page);
+  }
 }

@@ -1,8 +1,8 @@
-<div class="alert alert-danger" *ngIf="this.results === undefined">
-  Couldn't find anything with that term. Try another search!
+<div class="alert alert-danger" *ngIf="this.results.total_results === 0">
+ This movie has no reviews! :c Be the first to post one!
 </div>
 
-<div *ngIf="this.results !== undefined" class="container">
+<div *ngIf="this.results.total_results !== 0" class="container">
   <div *ngFor="let review of reviews">
     <app-review [review]="review"></app-review>
   </div>
