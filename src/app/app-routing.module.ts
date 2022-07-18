@@ -7,10 +7,10 @@ import {ReviewsComponent} from "./reviews/reviews.component";
 
 const routes: Routes = [
   {path: 'search/:term', component: SearchResultComponent},
-  {path: '', redirectTo: 'watchlist', pathMatch: 'full'},
   {path: 'watchlist', component: WatchlistComponent},
+  {path: 'reviews/:id', component:ReviewsComponent, outlet: 'side'},
   {path: 'rate/:id', component: RateComponent},
-  {path: 'reviews/:id', component: ReviewsComponent},
+  {path: '', redirectTo: 'watchlist', pathMatch: 'full'},
 ];
 
 @NgModule({

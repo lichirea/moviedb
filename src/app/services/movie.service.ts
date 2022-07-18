@@ -80,6 +80,16 @@ export class MovieService {
       )
   }
 
+  getReviews(movieId: number, page: number) {
+    let reviewsUrl = `https://api.themoviedb.org/3/movie
+    /${movieId}/reviews?api_key=0c3e7beaa53d68a61d142e6fcb7618bb&language=en-US&page=${page}`
+    return this.http.get<any>(reviewsUrl)
+      .pipe(
+        tap(result => console.log(result)),
+        catchError(this.handleError<any>('getReviews', []))
+      );
+  }
+
   getPoster(poster_path: string | null) {
     let imageUrl = 'https://image.tmdb.org/t/p/w500' + poster_path;
     return this.http.get<any>(imageUrl)
@@ -93,7 +103,6 @@ export class MovieService {
     return (error: any): Observable<T> => {
       console.log('Error: ' + operation);
       console.log(error);
-
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };

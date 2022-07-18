@@ -14,6 +14,7 @@ import { WatchlistComponent } from './watchlist/watchlist.component';
 import { RateComponent } from './rate/rate.component';
 import { HighlightWhiteDirective } from './highlight-white.directive';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ReviewsComponent } from './reviews/reviews.component';
     WatchlistComponent,
     RateComponent,
     HighlightWhiteDirective,
-    ReviewsComponent
+    ReviewsComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

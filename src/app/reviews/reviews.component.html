@@ -1,1 +1,17 @@
-<p>reviews works!</p>
+<div class="alert alert-danger" *ngIf="this.results === undefined">
+  Couldn't find anything with that term. Try another search!
+</div>
+
+<div *ngIf="this.results !== undefined" class="container">
+  <div *ngFor="let review of reviews">
+    <app-review [review]="review"></app-review>
+  </div>
+  <div class="result-actions">
+    <button class="btn btn-dark" (click)="previousPage()" [attr.disabled]="page === 1? true : null"> << </button>
+    <div class="result-info">
+      <span>Page: {{results.page}}/{{results.total_pages}} </span>
+      <span>Total number of results: {{results.total_results}}</span>
+    </div>
+    <button class="btn btn-dark" (click)="nextPage()" [attr.disabled]="page === results.total_pages? true : null"> >> </button>
+  </div>
+</div>
