@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {SearchResultComponent} from './search-result/search-result.component';
 import {HttpClientModule, HttpClient, HttpHeaders} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MovieComponent} from './movie/movie.component';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from "./services/in-memory-data.service";
@@ -16,6 +16,7 @@ import { HighlightWhiteDirective } from './highlight-white.directive';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ReviewComponent } from './review/review.component';
 import { WriteReviewComponent } from './write-review/write-review.component';
+import { FormTestComponent } from './form-test/form-test.component';
 
 @NgModule({
   declarations: [
@@ -28,17 +29,19 @@ import { WriteReviewComponent } from './write-review/write-review.component';
     HighlightWhiteDirective,
     ReviewsComponent,
     ReviewComponent,
-    WriteReviewComponent
+    WriteReviewComponent,
+    FormTestComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    // HttpClientInMemoryWebApiModule.forRoot(
-    //   InMemoryDataService, {dataEncapsulation: false}
-    // )
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        // HttpClientInMemoryWebApiModule.forRoot(
+        //   InMemoryDataService, {dataEncapsulation: false}
+        // )
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

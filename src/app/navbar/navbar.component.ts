@@ -30,4 +30,8 @@ export class NavbarComponent implements OnInit {
     console.log(this.searchTerm);
     this.router.navigate([`search/${this.searchTerm}`]);
   }
+
+  formTest() {
+    this.router.navigate(['form-test']);
+  }
 }
