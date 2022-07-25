@@ -17,6 +17,8 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { ReviewComponent } from './review/review.component';
 import { WriteReviewComponent } from './write-review/write-review.component';
 import { FormTestComponent } from './form-test/form-test.component';
+import { AuthTestComponent } from './auth-test/auth-test.component';
+import { SecretComponent } from './secret/secret.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { FormTestComponent } from './form-test/form-test.component';
     ReviewsComponent,
     ReviewComponent,
     WriteReviewComponent,
-    FormTestComponent
+    FormTestComponent,
+    AuthTestComponent,
+    SecretComponent
   ],
     imports: [
         BrowserModule,

@@ -5,6 +5,9 @@ import {WatchlistComponent} from "./watchlist/watchlist.component";
 import {RateComponent} from "./rate/rate.component";
 import {ReviewsComponent} from "./reviews/reviews.component";
 import {FormTestComponent} from "./form-test/form-test.component";
+import {AuthTestComponent} from "./auth-test/auth-test.component";
+import {SecretComponent} from "./secret/secret.component";
+import {AuthGuardService} from "./services/auth-guard.service";
 
 const routes: Routes = [
   {path: 'search/:term', component: SearchResultComponent},
@@ -12,6 +15,8 @@ const routes: Routes = [
   {path: 'reviews/:id', component: ReviewsComponent, outlet: 'side'},
   {path: 'rate/:id', component: RateComponent},
   {path: 'form-test', component: FormTestComponent},
+  {path: 'secret', component: SecretComponent, canActivate: [AuthGuardService]},
+  {path: 'auth-test', component: AuthTestComponent},
   {path: '', redirectTo: 'watchlist', pathMatch: 'full'},
 ];
 

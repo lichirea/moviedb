@@ -34,4 +34,12 @@ export class NavbarComponent implements OnInit {
   formTest() {
     this.router.navigate(['form-test']);
   }
+
+  authTest() {
+    this.router.navigate(['auth-test']);
+  }
+
+  secret() {
+    this.router.navigate(['secret']);
+  }
 }

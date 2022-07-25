@@ -1,31 +1,61 @@
-<div class="container text-center">
-  <form [formGroup]="movieForm">
-    <div class="form-group">
-      <input type="text" class="form-control" formControlName="title" placeholder="Enter regional title">
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" formControlName="original_title" placeholder="Enter original title (if applicable)">
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" formControlName="release_date" placeholder="Enter release date">
-    </div>
-    <div class="form-group">
-      <select class="form-control" formControlName="adult">
-        <option value="true">Adult</option>
-        <option value="false">Everyone</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <textarea type="text" class="form-control" formControlName="overview" placeholder="Enter movie overview"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="voteRange" class="form-label">Vote Average: {{movieForm.controls.vote_average.value}}</label>
-      <input type="range" class="form-range" id="voteRange" min="0" max="10" step="0.1" formControlName="vote_average">
-    </div>
-    <div class="form-group">
-      <label for="voteCount" class="form-label">Vote Count</label>
-      <input type="number" class="form-range" min="0" id="voteCount" formControlName="vote_count">
-    </div>
-  </form>
-</div>
+<div class="big-box">
+  <div class="container text-center">
+    <form [formGroup]="movieForm">
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="title" placeholder="Enter regional title">
+        <div *ngIf="title?.invalid && (title?.dirty || title?.touched)"
+             class="alert alert-danger">
+          <div *ngIf="title?.errors?.['required']">
+            Title is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="original_title" placeholder="Enter original title (if applicable)">
+      </div>
+      <div class="form-group">
+        <input type="date" class="form-control" formControlName="release_date" placeholder="Enter release date">
+        <div *ngIf="release_date?.invalid && (release_date?.dirty || release_date?.touched)"
+             class="alert alert-danger">
+          <div *ngIf="release_date?.errors?.['required']">
+            Release Date is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <select class="form-control" formControlName="adult">
+          <option value="true">Adult</option>
+          <option value="false">Everyone</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <textarea type="text" class="form-control" formControlName="overview" placeholder="Enter movie overview"></textarea>
+        <div *ngIf="overview?.invalid && (overview?.dirty || overview?.touched)"
+             class="alert alert-danger">
+          <div *ngIf="overview?.errors?.['required']">
+            Overview is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="voteRange" class="form-label">Vote Average: {{movieForm.controls.vote_average.value}}</label>
+        <input type="range" class="form-range" id="voteRange" min="0" max="10" step="0.1" formControlName="vote_average">
+      </div>
+      <div class="form-group">
+        <label for="voteCount" class="form-label">Vote Count</label>
+        <input type="number" class="form-range" min="0" id="voteCount" formControlName="vote_count">
+      </div>
+      <button type="submit" class="btn btn-dark" (click)="addMovie()" [disabled]="!movieForm.valid">Submit</button>
+    </form>
+  </div>
 
+  <div class="alert alert-danger" *ngIf="this.movies === []">
+    No movies here. Try to add some!
+  </div>
+
+  <div *ngIf="this.movies !== []" class="movies">
+    <div *ngFor="let movie of movies">
+      <app-movie [movie]="movie"></app-movie>
+    </div>
+  </div>
+</div>
