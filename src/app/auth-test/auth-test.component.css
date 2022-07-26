@@ -1,0 +1,10 @@
+.container{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  height: 50vh;
+}
+
+.btn{
+  margin: 1rem;
+}

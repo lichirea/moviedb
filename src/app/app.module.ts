@@ -12,13 +12,14 @@ import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from "./services/in-memory-data.service";
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { RateComponent } from './rate/rate.component';
-import { HighlightWhiteDirective } from './highlight-white.directive';
+import { HighlightWhiteDirective } from './directives/highlight-white.directive';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ReviewComponent } from './review/review.component';
 import { WriteReviewComponent } from './write-review/write-review.component';
 import { FormTestComponent } from './form-test/form-test.component';
 import { AuthTestComponent } from './auth-test/auth-test.component';
 import { SecretComponent } from './secret/secret.component';
+import {SecondaryModule} from "./secondary/secondary.module";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { SecretComponent } from './secret/secret.component';
         // HttpClientInMemoryWebApiModule.forRoot(
         //   InMemoryDataService, {dataEncapsulation: false}
         // )
+        SecondaryModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
