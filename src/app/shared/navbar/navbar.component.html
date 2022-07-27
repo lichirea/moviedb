@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+  <div class="container-fluid">
+    <a class="navbar-brand" appHighlightWhite href="#">MovieDB</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" type="button" (click)="watchlist()">Watchlist</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" type="button" (click)="authTest()">Auth-Test</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" type="button" (click)="formTest()">Form-Test</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" type="button" (click)="secret()">SECRET</a>
+        </li>
+      </ul>
+
+    </div>
+    <form class="d-flex">
+      <input class="form-control me-2 bg-danger" type="search" id="search-term"
+             [(ngModel)]="searchTerm" name="searchTerm" placeholder="Search" aria-label="Search">
+      <a (click)="search()">
+        <button class="btn btn-danger" type="submit">Search</button>
+      </a>
+    </form>
+  </div>
+</nav>

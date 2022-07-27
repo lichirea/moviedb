@@ -1,0 +1,27 @@
+<div class="card shadow-lg rounded border-3 bg-danger" style="width: 18rem">
+  <img class="card-img-top" src="/src/assets/popcorn.jpg" alt="Movie Poster">
+  <div class="card-body">
+    <h5 class="card-title text-center">{{movie.original_title}}</h5>
+    <h6 class="text-center" *ngIf="movie.title !== movie.original_title">{{movie.title}}</h6>
+    <span>{{movie.release_date | date}}</span>
+    <span>{{movie.vote_average}}&star; {{movie.vote_count}}&#9878;</span>
+    <div class="container">
+      <div [ngSwitch]="onWatchlist">
+        <ng-template [ngSwitchCase]="false">
+          <button class="btn btn-success" (click)="changeWatchList()">Add</button>
+        </ng-template>
+        <ng-template [ngSwitchCase]="true">
+          <button class="btn btn-danger" (click)="changeWatchList()">Remove</button>
+        </ng-template>
+      </div>
+      <button type="button" class="btn btn-dark" routerLink="/rate/{{movie.id}}">
+        {{rated ? 'Change Rating' : 'Rate'}}
+      </button>
+    </div>
+    <span class="card-text">{{movie.overview}}</span>
+    <button type="button" class="btn btn-dark" (click)="getReviews()">Reviews</button>
+  </div>
+</div>
+
+
+
