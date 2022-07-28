@@ -1,23 +1,73 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { MovieComponent } from './movie.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {Movie} from "../entities/movie";
+import {MovieComponent} from './movie.component';
+import {MovieService} from "../services/movie.service/movie.service";
+import {async, of} from "rxjs";
+import createSpyObj = jasmine.createSpyObj;
+import {Router, RouterModule} from "@angular/router";
+import {DomSanitizer} from "@angular/platform-browser";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('MovieComponent', () => {
   let component: MovieComponent;
   let fixture: ComponentFixture<MovieComponent>;
 
+  const fakeMovieService = createSpyObj<MovieService>('MovieService',
+    {
+      isOnWatchlist: of({watchlist: true}),
+      changeWatchList: of({status_code: 201}),
+    })
+
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MovieComponent ]
+      imports: [
+        RouterTestingModule,
+      ],
+      declarations: [MovieComponent],
+      providers: [
+        {provide: MovieService, useValue: fakeMovieService},
+        {provide: RouterTestingModule},
+        {provide: DomSanitizer},
+      ],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(MovieComponent);
     component = fixture.componentInstance;
+    component.movie = {
+      id: 0,
+      original_title: 'Avatar',
+      title: 'Avatar',
+      release_date: '2009-12-10',
+      adult: false,
+      overview: 'In the 22nd century, a paraplegic Marine is dispatched to the moon Pandora on a unique mission, but becomes torn between following orders and protecting an alien civilization.',
+      vote_average: 7.5,
+      vote_count: 25679,
+      poster_path: '/jRXYjXNq0Cs2TcJjLkki24MLp7u.jpg'
+    };
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should get a movie from parent', () => {
+    expect(component.movie).toBeDefined();
+  });
+
+  it('should call isOnWatchList for that movie', () => {
+    expect(fakeMovieService.isOnWatchlist).toHaveBeenCalled();
+  });
+
+  it('should set onWatchList', () => {
+    expect(component.onWatchlist).toEqual(true);
+  });
+
+  it('should change onWatchList when changeWatchList returns success', async () => {
+    component.changeWatchList();
+    await new Promise(f => setTimeout(f, 1000));
+    expect(component.onWatchlist).toEqual(false);
   });
 });

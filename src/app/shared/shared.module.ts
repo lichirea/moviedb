@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {HighlightWhiteDirective} from "./directives/highlight-white/highlight-white.directive";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -10,13 +12,21 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     NavbarComponent,
     HighlightWhiteDirective,
+
   ],
   exports: [
-    NavbarComponent
+    NavbarComponent,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule,
   ],
   imports: [
     CommonModule,
     FormsModule,
-  ]
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule,
+  ],
+
 })
 export class SharedModule { }

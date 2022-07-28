@@ -11,7 +11,7 @@ import {Result} from "../entities/result";
 })
 export class SearchResultComponent implements OnInit {
   results!: Result;
-  movies?: Movie[];
+  movies!: Movie[];
   term: string | null = null;
   page: number = 1;
 

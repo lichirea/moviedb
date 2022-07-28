@@ -7,7 +7,7 @@ import {HostListener} from "@angular/core";
 })
 export class HighlightWhiteDirective {
 
-  constructor(private el: ElementRef) {
+  constructor(private el?: ElementRef) {
 
   }
 
@@ -20,7 +20,7 @@ export class HighlightWhiteDirective {
   }
 
   private magic(color: string) {
-    this.el.nativeElement.style.backgroundColor = color;
+    this.el!.nativeElement.style.backgroundColor = color;
   }
 
 }

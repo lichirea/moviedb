@@ -10,7 +10,7 @@ import {WatchlistComponent} from "./watchlist/watchlist.component";
 import {FormTestComponent} from "./form-test/form-test.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
-import {HttpClientModule} from "@angular/common/http";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -26,9 +26,7 @@ import {HttpClientModule} from "@angular/common/http";
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    HttpClientModule,
+    SharedModule,
   ],
   providers: [
     MovieService,

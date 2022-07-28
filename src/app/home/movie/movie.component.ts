@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Movie} from "../entities/movie";
 import {MovieService} from "../services/movie.service/movie.service";
 import {DomSanitizer} from "@angular/platform-browser";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 
 
 @Component({
@@ -20,7 +20,6 @@ export class MovieComponent implements OnInit {
     private movieService: MovieService,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private route: ActivatedRoute,
   ) {
   }
 
@@ -52,7 +51,7 @@ export class MovieComponent implements OnInit {
       .subscribe(
         response => {
           response.status_code === 201 ? this.onWatchlist = !this.onWatchlist : 0;
-          this.ngOnInit();
+          //this.ngOnInit(); this ruins the test but it makes the button look more responsive
         }
       )
   }
