@@ -26,7 +26,7 @@ describe('MovieComponent', () => {
       ],
       declarations: [MovieComponent],
       providers: [
-        {provide: MovieService, useValue: fakeMovieService},
+        {provide: MovieService, useValueS: fakeMovieService},
         {provide: RouterTestingModule},
         {provide: DomSanitizer},
       ],
@@ -65,9 +65,8 @@ describe('MovieComponent', () => {
     expect(component.onWatchlist).toEqual(true);
   });
 
-  it('should change onWatchList when changeWatchList returns success', async () => {
+  it('should reverse onWatchList when changeWatchList returns success', () => {
     component.changeWatchList();
-    await new Promise(f => setTimeout(f, 1000));
     expect(component.onWatchlist).toEqual(false);
   });
 });

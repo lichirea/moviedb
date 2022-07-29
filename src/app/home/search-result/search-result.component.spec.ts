@@ -4,7 +4,7 @@ import { SearchResultComponent } from './search-result.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ActivatedRoute, RouterModule} from "@angular/router";
 import {MovieService} from "../services/movie.service/movie.service";
-import {catchError, Observable, of, tap} from "rxjs";
+import {of} from "rxjs";
 import createSpyObj = jasmine.createSpyObj;
 
 describe('SearchResultComponent', () => {

@@ -14,10 +14,19 @@ describe('ReviewComponent', () => {
 
     fixture = TestBed.createComponent(ReviewComponent);
     component = fixture.componentInstance;
+    component.review = {
+      author: 'me',
+      content: 'cool',
+      created_at: '22-01-2002'
+    }
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should get a review as input', () => {
+    expect(component.review).toBeDefined();
   });
 });
