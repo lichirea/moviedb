@@ -12,7 +12,7 @@ describe('SearchResultComponent', () => {
   let fixture: ComponentFixture<SearchResultComponent>;
   const fakeMovieService = createSpyObj<MovieService>('MovieService',
     {
-      search:of({page: 1, total_pages: 1, total_results: 1, results: []}),
+      search:of({page: 1, total_pages: 1, total_results: 1, results: [], status_code: 200}),
     })
 
   const fakeActivatedRoute = {

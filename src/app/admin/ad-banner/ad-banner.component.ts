@@ -14,7 +14,7 @@ export class AdBannerComponent implements OnInit, OnDestroy {
   index = -1;
   interval:number | undefined;
 
-  @ViewChild(AdDirective, {static: true}) adHost!: AdDirective;
+  @ViewChild(AdDirective, {static: true}) adHost: AdDirective | undefined;
 
   constructor() { }
 
@@ -27,11 +27,11 @@ export class AdBannerComponent implements OnInit, OnDestroy {
     this.index = (this.index + 1) % this.ads.length;
     const adItem = this.ads[this.index];
 
-    const viewContainerRef = this.adHost.viewContainerRef;
-    viewContainerRef.clear();
-
-    const componentRef = viewContainerRef.createComponent<AdComponent>(adItem.component);
-    componentRef.instance.data = adItem.data;
+    // const viewContainerRef = this.adHost!.viewContainerRef;
+    // viewContainerRef.clear();
+    //
+    // const componentRef = viewContainerRef.createComponent<AdComponent>(adItem.component);
+    // componentRef.instance.data = adItem.data;
   }
 
   private getAds() {
