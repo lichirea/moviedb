@@ -24,14 +24,16 @@ export class AdBannerComponent implements OnInit, OnDestroy {
   }
 
   private loadComponent() {
-    this.index = (this.index + 1) % this.ads.length;
-    const adItem = this.ads[this.index];
+    if(this.ads.length){
+      this.index = (this.index + 1) % this.ads.length;
+      const adItem = this.ads[this.index];
 
-    // const viewContainerRef = this.adHost!.viewContainerRef;
-    // viewContainerRef.clear();
-    //
-    // const componentRef = viewContainerRef.createComponent<AdComponent>(adItem.component);
-    // componentRef.instance.data = adItem.data;
+      const viewContainerRef = this.adHost!.viewContainerRef;
+      viewContainerRef.clear();
+
+      const componentRef = viewContainerRef.createComponent<AdComponent>(adItem.component);
+      componentRef.instance.data = adItem.data;
+    }
   }
 
   private getAds() {

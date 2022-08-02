@@ -1,6 +1,7 @@
 import { AdDirective } from './ad.directive';
 import {
-  ComponentFactory, ComponentRef,
+  Component,
+  ComponentFactory, ComponentRef, Directive,
   EmbeddedViewRef,
   EnvironmentInjector,
   Injector,
@@ -10,17 +11,18 @@ import {
   ViewContainerRef, ViewRef
 } from "@angular/core";
 
+
 describe('AdDirective', () => {
   it('should create an instance', () => {
-    const directive = new AdDirective();
+    const directive = new AdDirective(new TestViewContainerRef());
     expect(directive).toBeTruthy();
   });
 
-  // it('should allow access to the ViewContainerRef', () => {
-  //   const directive = new AdDirective(new TestViewContainerRef());
-  //   expect(directive.viewContainerRef).toBeTruthy();
-  //   expect(directive.viewContainerRef).toBeInstanceOf(ViewContainerRef);
-  // });
+  it('should allow access to the ViewContainerRef', () => {
+    const directive = new AdDirective(new TestViewContainerRef());
+    expect(directive.viewContainerRef).toBeTruthy();
+    expect(directive.viewContainerRef).toBeInstanceOf(ViewContainerRef);
+  });
 
 });
 
