@@ -1,6 +1,6 @@
 <div class="big-box">
   <div class="container text-center">
-    <form [formGroup]="movieForm">
+    <form [formGroup]="movieForm" id="movieForm">
       <div class="form-group">
         <input type="text" class="form-control" formControlName="title" placeholder="Enter regional title">
         <div *ngIf="title?.invalid && (title?.dirty || title?.touched)"

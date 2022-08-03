@@ -16,7 +16,7 @@ describe('MovieService', () => {
       ]
     });
     service = TestBed.inject(MovieService);
-    httpClientSpy.get.and.returnValue(of({status_code: 200, data: {} }))
+    httpClientSpy.get.and.returnValue(of({status_code: 200, data: {} }));
   });
 
   it('should be created', () => {

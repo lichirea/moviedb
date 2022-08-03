@@ -12,7 +12,7 @@ describe('WatchlistComponent', () => {
 
   const fakeMovieService = createSpyObj<MovieService>('MovieService',
     {
-      getWatchlist: of({watchlist: true}),
+      getWatchlist: of({results: []}),
     })
 
   const fakeUserService = createSpyObj<UserService>('UserService',
@@ -24,7 +24,11 @@ describe('WatchlistComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WatchlistComponent ]
+      declarations: [ WatchlistComponent ],
+      providers: [
+        {provide: UserService, useValue: fakeUserService},
+        {provide: MovieService, useValue: fakeMovieService},
+      ]
     })
     .compileComponents();
 

@@ -18,7 +18,7 @@ describe('AdBannerComponent', () => {
   Object.getOwnPropertyDescriptor(directiveSpy, 'viewContainerRef').get.and.returnValue({
     clear: () => {return true;},
     createComponent: () => {return {instance: {data: 'aaa'}}},
-  })
+  });
 
   const jokeSpy = createSpyObj('JokeComponent', [], ['data']);
 
