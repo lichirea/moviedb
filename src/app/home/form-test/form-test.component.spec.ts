@@ -127,4 +127,17 @@ describe('FormTestComponent', () => {
       expect(adultValueFromGroup?.errors).toBeNull();
     })
   }));
+
+  it('should update overview after input', fakeAsync(() => {
+    const movieFormUserElement: HTMLSelectElement = fixture.debugElement.nativeElement
+      .querySelector('#movieForm').querySelectorAll('textarea')[0];
+    movieFormUserElement.value = 'Cool description';
+    movieFormUserElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const overviewValueFromGroup = component.movieForm.get('overview');
+      expect(overviewValueFromGroup?.value).toEqual(overviewValueFromGroup?.value as string);
+      expect(overviewValueFromGroup?.errors).toBeNull();
+    })
+  }));
 });
